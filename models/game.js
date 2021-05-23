@@ -1,4 +1,5 @@
-function(sequelize, DataTypes) {
+// missing module exports declaration
+module.exports = function(sequelize, DataTypes) {
     return sequelize.define('game', {
         title: {
             type: DataTypes.STRING(25),
