@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 // fix wrong sequelize import
 const sequelize = require('../db');
-var User = sequelize.import('../models/user');
+let User = sequelize.import('../models/user');
 
 module.exports = function (req, res, next) {
-    // if (req.method == 'OPTIONS') {
-    //     next();   // allowing options as a method for request
-    // } else {
+    if (req.method == 'OPTIONS') {
+        next();   // allowing options as a method for request
+    } else {
         let sessionToken = req.headers.authorization;
         console.log(sessionToken);
         if (!sessionToken) return res.status(403).send({ auth: false, message: "No token provided." });
@@ -27,5 +27,5 @@ module.exports = function (req, res, next) {
                 }
             });
         }
-    // }
+    }
 }
